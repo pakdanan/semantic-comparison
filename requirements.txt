@@ -1,2 +1,2 @@
-sentence-transformers
-streamlit
+transformers
+torch
