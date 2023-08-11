@@ -1,7 +1,9 @@
-"""Streamlit app to compute similarity between sentences or paragraphs."""
+import streamlit as st
 from transformers import AutoTokenizer, AutoModel
 import torch
 import torch.nn.functional as F
+
+"""Streamlit app to compute similarity between sentences or paragraphs."""
 
 #Mean Pooling - Take attention mask into account for correct averaging
 def mean_pooling(model_output, attention_mask):
