@@ -7,19 +7,17 @@ def compute_similarity(sentence1: str, sentence2: str, model) -> str:
     scores = util.cos_sim(query_embeddings, passage_embedding)
     return str(scores.numpy()[0][0])
 
-# TEST to display embeddings:
-#sentences = ["This is an example sentence", "Each sentence is converted"]
-#model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
-#embeddings = model.encode(sentences)
-#st.text(embeddings)
-
 # Render Streamlit page
 st.title("Compute Similarity between sentences or paragraphs.")
 st.markdown(
     "This mini-app computes similarity between two or multiple sentences using [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) model."
 )
 
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+@st.cache_resource  # 👈 Add the caching decorator
+def load_model():
+    return SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+    
+model = load_model()
 
 sentence1 = st.text_input(label="Sentence 1", placeholder="Text goes here...")
 sentence2 = st.text_input(label="Sentence 2", placeholder="Text goes here...")
