@@ -8,7 +8,7 @@ def compute_similarity(sentence1: str, sentence2: str, model) -> str:
     return str(scores.numpy()[0][0])
 
 # Render Streamlit page
-st.title("Compute Similarity between sentences or paragraphs.")
+st.header("Compute Similarity between sentences or paragraphs.")
 st.markdown(
     "This mini-app computes similarity between two or multiple sentences using [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) model."
 )
